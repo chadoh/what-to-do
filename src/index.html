@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,22 @@
   <link rel="stylesheet" href="global.scss">
   <!-- <link rel="icon" href="favicon.png" type="image/png" /> -->
   <meta property="og:title" content="what to do">
-  <meta property="og:description" content="A random suggestion on every page load. Make your own list; have fun with friends and loved ones.">
+  <meta property="og:description"
+    content="A random suggestion on every page load. Make your own list; have fun with friends and loved ones.">
   <!-- <meta property="og:image" content=""> -->
   <meta property="og:url" content="https://chadoh.com/what-to-do">
   <!-- <meta name="twitter:card" content="summary_large_image"> -->
 </head>
+
 <body>
   <main>
     <span>&nbsp;</span>
-    <h1>how about <span id="activity">🤔</span></h1>
+    <div>
+      <h1>how about <span id="activity">🤔</span></h1>
+      <button id="again">
+        nah
+      </button>
+    </div>
     <div id="edit-area">
       <button id="edit">
         <small>edit activities <span class="arrow">▾</span></small>
@@ -36,4 +44,5 @@
   </main>
   <script src="main.ts"></script>
 </body>
+
 </html>

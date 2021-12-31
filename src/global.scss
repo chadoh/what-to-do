@@ -2,31 +2,36 @@
   box-sizing: border-box;
 }
 
+:root {
+  --fg: #1e1e1e;
+  --bg: #efefef;
+  --primary: rgb(231, 59, 147);
+  --secondary: rgb(62, 140, 116);
+  --tertiary: rgb(226, 110, 44);
+  @media (prefers-color-scheme: dark) {
+    --fg: #efefef;
+    --bg: #1e1e1e;
+  }
+}
+
 html {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  font-size: calc(.85em + 1vmin);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: calc(0.85em + 1vmin);
   line-height: 1.3;
 }
 
 body {
-  --primary: rgb(231, 59, 147);
-  --secondary: rgb(62, 140, 116);
-  --tertiary: rgb(226, 110, 44);
-
-  color: #1e1e1e;
+  color: var(--fg);
+  background-color: var(--bg);
   margin: 0;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #1e1e1e;
-    color: #efefef
-  }
 }
 
 p + p {
   margin-top: 0;
 }
 
-h1, #edit {
+main,
+#edit {
   text-align: center;
   width: 100%;
 }
@@ -41,14 +46,16 @@ main {
   padding: 1em;
 }
 
-#save, #edit {
+button {
   background: transparent;
+  border: none;
   color: inherit;
   cursor: pointer;
   font: inherit;
   position: relative;
   transition: top 50ms;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     outline: none;
     top: -1px;
   }
@@ -58,11 +65,11 @@ main {
 }
 
 #edit {
-  border: none;
   color: var(--primary);
   margin: 0;
   padding: 0;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: var(--secondary);
   }
   &:active {
@@ -75,7 +82,8 @@ main {
   border: 0.25em solid var(--primary);
   margin-bottom: 1em;
   padding: 0.5em 1em;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: var(--secondary);
   }
   &:active {
@@ -84,9 +92,17 @@ main {
   }
 }
 
+#again {
+  font-size: 0.9em;
+}
+#again:after {
+  content: "↺";
+  color: var(--primary);
+}
+
 .arrow {
   font-family: monospace;
-  content: ' ▾';
+  content: " ▾";
   display: inline-block;
   font-size: 1.2em;
   transition: transform 200ms;
@@ -114,4 +130,41 @@ textarea {
   flex: 1;
   margin-bottom: 1em;
   padding: 0.5em;
+}
+
+.loader {
+  font-size: 0;
+  transform: translateZ(1px);
+}
+.loader:before {
+  content: " ";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: var(--fg);
+  animation: loader 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.loader:after {
+  content: "thinking...";
+  display: block;
+  font-size: 0.5rem;
+  padding-top: 0.5rem;
+}
+@keyframes loader {
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
 }
